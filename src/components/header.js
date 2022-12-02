@@ -38,7 +38,7 @@ const tempSpan = document.createElement("span");
 
 const headerAppender = (selector) => {
 
-const header = Header("ALIENS FOUND IN MARS", "June 28","55°" );
+const header = Header("PRAVDA", "June 28","55°" );
 
 const headerEntryPoint = document.querySelector(selector);
 headerEntryPoint.append(header)
