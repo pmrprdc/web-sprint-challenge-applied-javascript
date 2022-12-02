@@ -1,4 +1,27 @@
 const Card = (article) => {
+  const cardDiv = document.createElement("div");
+  const headlineDiv = document.createElement("div");
+  const authorDiv = document.createElement("div");
+  const imgContainer = document.createElement("div");
+  const cardImg = document.createElement("img");
+  const imgSpan = document.createElement("span");
+  // classes
+  cardDiv.classList.add("card");
+  headlineDiv.classList.add("headline");
+  authorDiv.classList.add("author");
+  //hierarchy 
+  cardDiv.append(headlineDiv, authorDiv);
+  authorDiv.append(imgContainer, imgSpan);
+  imgContainer.append(cardImg);
+  //data inject
+  headlineDiv.textContent = article.headline;
+  cardImg.src = article.authorPhoto;
+  imgSpan.textContent = article.authorName;
+
+
+  return cardDiv;
+
+
   // TASK 5
   // ---------------------
   // Implement this function, which should return the markup you see below.
