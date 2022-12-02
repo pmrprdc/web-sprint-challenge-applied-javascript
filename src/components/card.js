@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const Card = (article) => {
   const cardDiv = document.createElement("div");
   const headlineDiv = document.createElement("div");
@@ -9,6 +11,7 @@ const Card = (article) => {
   cardDiv.classList.add("card");
   headlineDiv.classList.add("headline");
   authorDiv.classList.add("author");
+  imgContainer.classList.add("img-container")
   //hierarchy 
   cardDiv.append(headlineDiv, authorDiv);
   authorDiv.append(imgContainer, imgSpan);
@@ -17,6 +20,9 @@ const Card = (article) => {
   headlineDiv.textContent = article.headline;
   cardImg.src = article.authorPhoto;
   imgSpan.textContent = article.authorName;
+  cardDiv.addEventListener("click", ()=>{
+    console.log(article.headline)
+  })
 
 
   return cardDiv;
@@ -43,6 +49,25 @@ const Card = (article) => {
 }
 
 const cardAppender = (selector) => {
+
+  const articlesUrl = "http://localhost:5001/api/articles";
+  axios.get(articlesUrl).then((res)=>{
+    const articleObjects = res.data.articles;
+    const articlesArr = Object.entries(articleObjects);
+    articlesArr.forEach((articleClass)=>{
+      const articleCollection = articleClass[1];
+      articleCollection.forEach((article)=>{
+        const card = Card(article);
+        console.log(card);
+        const injectionTarget = document.querySelector(selector);
+        document.querySelector(selector).append(card);
+      })
+    })
+    
+    
+  }).catch((err)=>{
+    console.log("error!")
+  })
   // TASK 6
   // ---------------------
   // Implement this function that takes a css selector as its only argument.

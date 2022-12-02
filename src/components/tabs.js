@@ -34,7 +34,6 @@ const Tabs = (topics) => {
 const tabsAppender = (selector) => {
   const topicUrl = "http://localhost:5001/api/topics";
   axios.get(topicUrl).then((data)=>{
-      console.log(data.data.topics);
       const topicsArray = data.data.topics;
       const topicsModule = Tabs(topicsArray);
       const entryPoint = document.querySelector(selector);
